@@ -70,31 +70,31 @@
 	<script>
 		$(document).ready(function(){
 
+				var url= window.location.pathname;
+				var urlsplit = url.split("/view-post/");
+				var action = urlsplit[urlsplit.length-1];;
+				if(action == '/view-post'){
+
+				}else{
+						$("#search").val(action)
+				}
 		
 
 			$("#search").on("keyup",function(){
 				var val = $("#search").val();
-				console.log(val)
 
 				if(val == ''){
-					window.location.href = "{{URL::to('/view-post')}}";
+					window.location.href = "{{URL::to('/view-post')}}";		
 				}else{
-					
 							var url = "{{URL::to('/view-post')}}/"+val;
-
 								$.ajax({			
 									url:url
 								})
 								.done(function(data){
-									$(".load").html(data);
+									$(".load").html(data);									
 								})
-
-
 				}	
-
 			})
-
-
 		});
 
 		$(document).on("click",".pagination a",function(e){
@@ -110,7 +110,7 @@
 			})
 			.done(function(data){
 				$(".load").html(data);
-				// location.hash=url
+			
 			})
 		});
 	</script>
