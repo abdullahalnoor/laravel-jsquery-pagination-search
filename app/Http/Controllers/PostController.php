@@ -9,9 +9,13 @@ class PostController extends Controller
 {
     
 
-    public function index(Request $request){
+    public function index(Request $request,$search=null){
 
-        $posts = Post::latest('created_at')->paginate(5);
+        if(empty($search)){
+             $posts = Post::latest('created_at')->paginate(5);
+        }else{
+            $posts = Post::where('title','like','%'.$search.'%')->paginate(5);
+        }
 
         if($request->ajax()){
              return view('post.load',compact('posts'))->render();
@@ -21,19 +25,7 @@ class PostController extends Controller
     }
 
 
-    //  public function ajax(){
-
-    //     $posts = Post::latest('created_at')->paginate(5);
-
-
-    //     return view('post.load',compact('posts'));
-    // }
-
-    public function search($search){
-         $posts = Post::where('title','like','%'.$search.'%')->paginate(5);
-        //  return $posts;
-         return view('post.load',compact('posts'));
-    }
+  
 
 
 }

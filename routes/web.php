@@ -16,6 +16,4 @@ Route::get('/', function () {
 });
 
 
-Route::get('/view-post','PostController@index');
-// Route::get('/ajax','PostController@ajax');
-Route::get('/search/{search}','PostController@search')->name('search');
+Route::get('/view-post/{search?}','PostController@index');

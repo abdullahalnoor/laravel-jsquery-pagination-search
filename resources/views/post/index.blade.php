@@ -79,9 +79,17 @@
 				if(val == ''){
 					window.location.href = "{{URL::to('/view-post')}}";
 				}else{
-					$.get("{{URL::to('/search')}}/"+val,function(data){
-					$(".load").html(data);
-						})
+					
+							var url = "{{URL::to('/view-post')}}/"+val;
+
+								$.ajax({			
+									url:url
+								})
+								.done(function(data){
+									$(".load").html(data);
+								})
+
+
 				}	
 
 			})
