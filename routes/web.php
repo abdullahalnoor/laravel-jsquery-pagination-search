@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 
 Route::get('/view-post/{search?}','PostController@index');
+
+ Route::get('/', 'BlogController@index')->name('home');
